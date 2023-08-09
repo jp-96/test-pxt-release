@@ -13,7 +13,7 @@ Extensions are PXT’s dynamic/static library mechanism for extending a target, 
 [https://github.com/jp-rad/pxt-ubit-extension](https://github.com/jp-rad/pxt-ubit-extension)
 * click **Use this template**.  
 [Here - https://github.com/jp-rad/pxt-ubit-extension/generate](https://github.com/jp-rad/pxt-ubit-extension/generate)
-* settings on your repository.  
+* settings for your new repository.  
 Settings > Actions > General > Workflow permissions: **Read and write permissions**  
 Settings > Pages > branch: **master**
 
