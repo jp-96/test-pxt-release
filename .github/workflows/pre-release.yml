@@ -29,7 +29,11 @@ jobs:
           pxt build --cloud
         env:
           CI: true
-
+      
+      # repository name: ${{ steps.repository.outputs.name }}
+      - id: repository
+        run: echo "name=${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}" >> $GITHUB_OUTPUT
+      
       # Settings > Actions > General > Workflow permissions
       # change: Read repository contents permission
       #     to: Read and write permissions
@@ -41,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: ${{ steps.repository.outputs.name }} ${{ github.ref }}
           draft: false
           prerelease: true
       - name: Upload Release Asset
@@ -52,5 +56,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ./built/binary.hex
-          asset_name: pxt-extension.${{ github.ref_name }}.hex
+          asset_name: ${{ steps.repository.outputs.name }}.${{ github.ref_name }}.hex
           asset_content_type: application/octet-stream
