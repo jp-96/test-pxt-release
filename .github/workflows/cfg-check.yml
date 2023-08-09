@@ -3,8 +3,7 @@ name: Check pxt.json
 on:
   push:
     branches:
-      - 'master'
-      - 'main'
+      - '*'
 
 jobs:
   check-cfg:
